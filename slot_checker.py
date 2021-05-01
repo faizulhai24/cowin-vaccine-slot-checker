@@ -20,7 +20,6 @@ class SlotChecker:
             target_time = now + datetime.timedelta(days=7 * i)
             self.DATES.append(target_time.strftime("%d-%m-%Y"))
 
-
     def check_free_slots(self, data):
         free_slots = []
         centers = data['centers']
@@ -44,12 +43,13 @@ class SlotChecker:
             for date in self.DATES:
                 resp = requests.get(self.URL.format(district_id[0], date))
                 if resp.status_code != 200:
+                    # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
                     continue
                 free_slots = self.check_free_slots(resp.json())
                 if free_slots:
                     slots.extend(free_slots)
                 else:
-                    print("No free slot found on {}".format(date))
+                    print("No free slots found on {} for {}".format(date, district_id[1]))
 
         if slots:
             if self.WRITE_TO_FILE:
