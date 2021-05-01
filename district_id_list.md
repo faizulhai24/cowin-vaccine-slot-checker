@@ -410,8 +410,7 @@ Distict Id                            |                   District Name
 377			|	 	 Wardha
 369			|	 	 Washim
 368			|	 	 Yavatmal
-
-			|	398			|	 	 Bishnupur
+398			|	 	 Bishnupur
 399			|	 	 Chandel
 400			|	 	 Churachandpur
 401			|	 	 Imphal East
