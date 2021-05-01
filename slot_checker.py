@@ -1,3 +1,4 @@
+import datetime
 import time
 
 import requests
@@ -7,11 +8,18 @@ from pygame import mixer
 class SlotChecker:
     def __init__(self):
         self.DISTRICT_IDS = [(294, "BBMP"), (265, "Bengaluru Urban")]
-        self.DATES = ["02-05-2021", "09-05-2021", "16-05-2021", "23-05-2021", "30-05-2012"]
+        self.NUM_WEEKS = 5
+        self.DATES = []
         self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id={}&date={}"
         self.WRITE_TO_FILE = True
         self.ALARM = True
         self.FILE_NAME = "vaccine.txt"
+
+        now = datetime.datetime.now()
+        for i in range(5):
+            target_time = now + datetime.timedelta(days=7 * i)
+            self.DATES.append(target_time.strftime("%d-%m-%Y"))
+
 
     def check_free_slots(self, data):
         free_slots = []

@@ -19,19 +19,21 @@ DISTRICT_IDS                          | This is the list of districts to check f
 WRITE_TO_FILE                         | Optional. Write the free slots to a file. Default: True
 FILE_NAME                             | Optional. File to which to write the open slots to. Default: "vaccine.txt"
 ALARM                                 | Optional. This will ring an alarm when free slots are found. Default: True
-DATE_INTERVAL                         | The default interval in which the slot will be queried is the next 5 weeks starting today.   
+NUM_WEEKS                             | No of weeks starting today to check the slots in. Default: 5   
 
 ## Steps to run:
 1. Clone the repository
-2. Run ```pip install requests```
+2. Run ```pip install -r requirements.txt```
 3. Change the above defined configurations in [slot_checker.py](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/slot_checker.py) 
 4. Run the script using ```python3 slot_checker.py```
 
 ## Steps to run a cron job periodically (Linux/MacOS):
 
-There is a cron helper script [slot_script.sh](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/cron_script.sh) in the repo
+There is a cron helper script [slot_script.sh](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/cron_script.sh) in the repo, however you might have to make some changes to cron_script according to your environment.
 
 1. Go to the terminal and run ```crontab -e```
 2. Add this line `````*/10 * * * *  <PATH_TO_THE_REPO>/cron_script.sh`````
 3. You can change the periodicity. Just a regular cron expression. The above one will execute every 10 minutes.
 3. (Optional) If you want to disable the terminal mail for every cron job run add ```MAILTO="""``` above the previous command.
+
+Note: To check if this cron is running properly, you can check if the file with FILE_NAME got created. Another way is to check terminal mail. The terminal is going to create a mail for every time the cron runs. To check, go to terminal and run ```mail```.  
