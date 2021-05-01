@@ -8,7 +8,7 @@ This is a Python script which will help you to know when a slot is available on 
 2. (Optional) Run the script as a cron job (Linux/MacOS) which will periodically check for the slots.
 3. (Optional) Run the script as a cron job (Linux/MacOS), you can get an alert whenever a slot frees up.
 
-The main code is the file [slot_checker.py](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/slot_checker.py)
+The main code is in the file [slot_checker.py](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/slot_checker.py). Rest everything is optional in case you want to run it as a cron job.
 
 ## Configurations:
 Explanation for all the configuration that can be found in [slot_checker.py](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/slot_checker.py)
