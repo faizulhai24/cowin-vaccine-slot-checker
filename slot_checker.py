@@ -7,9 +7,10 @@ from pygame import mixer
 class SlotChecker:
     def __init__(self):
         self.DISTRICT_IDS = [(294, "BBMP"), (265, "Bengaluru Urban")]
-        self.DATES = ["01-05-2021", "08-05-2021", "15-05-2021", "22-05-2021", "29-05-2012"]
+        self.DATES = ["02-05-2021", "09-05-2021", "16-05-2021", "23-05-2021", "30-05-2012"]
         self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id={}&date={}"
-        self.EXCLUDED_HOSPITALS = ["H K HOSPITAL C1", "Newbagalur Layout UPHC C 1"]
+        self.WRITE_TO_FILE = True
+        self.ALARM = True
         self.FILE_NAME = "vaccine.txt"
 
     def check_free_slots(self, data):
@@ -17,8 +18,7 @@ class SlotChecker:
         centers = data['centers']
         for center in centers:
             for session in center['sessions']:
-                if session['min_age_limit'] == 18 and session['available_capacity'] > 10 and center[
-                    'name'] not in self.EXCLUDED_HOSPITALS:
+                if session['min_age_limit'] == 18 and session['available_capacity'] > 0:
                     free_slots.append("{} - {} - {}".format(center['name'], center['district_name'], session['date']))
         return free_slots
 
@@ -34,7 +34,9 @@ class SlotChecker:
         slots = []
         for district_id in self.DISTRICT_IDS:
             for date in self.DATES:
-                resp = requests.get(self.URL.format(self.DISTRICT_IDS[0][0], self.DATES[0]))
+                resp = requests.get(self.URL.format(district_id[0], date))
+                if resp.status_code != 200:
+                    continue
                 free_slots = self.check_free_slots(resp.json())
                 if free_slots:
                     slots.extend(free_slots)
@@ -42,11 +44,13 @@ class SlotChecker:
                     print("No free slot found on {}".format(date))
 
         if slots:
-            self.write_to_file(slots)
-            mixer.init()
-            mixer.music.load('./alarm.mp3')
-            mixer.music.play()
-            time.sleep(5)
+            if self.WRITE_TO_FILE:
+                self.write_to_file(slots)
+            if self.ALARM:
+                mixer.init()
+                mixer.music.load('./alarm.mp3')
+                mixer.music.play()
+                time.sleep(5)
 
 
 if __name__ == '__main__':

@@ -2,5 +2,7 @@
 
 export PATH=/usr/local/bin:$PATH
 
-cd ~/PycharmProjects/vaccine/
+# This has to be changed to the repository path on your system.
+
+cd ~/code/vaccine/
 python3 slot_checker.py
