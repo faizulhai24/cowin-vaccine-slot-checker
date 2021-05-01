@@ -1,7 +1,7 @@
 # cowin-vaccine-slot-checker
 This is a Python script which will help you to know when a slot is available on Cowin website.
 
-**This script has been tested with Python version 3.6, 3.8. In case you want to run it with Python 2.7, some changes might be required.**
+**This script has been tested with Python version 3.6, 3.8 on Linux/MacOs. In case you want to run it with Python 2.7 or Windows, some changes might be required.**
 
 ## Features:
 1. Find any open slots and print it in the terminal and optionally write to a file
