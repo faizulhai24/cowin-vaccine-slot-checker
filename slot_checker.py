@@ -10,7 +10,7 @@ class SlotChecker:
         self.DISTRICT_IDS = [(294, "BBMP"), (265, "Bengaluru Urban")]
         self.NUM_WEEKS = 5
         self.DATES = []
-        self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id={}&date={}"
+        self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}"
         self.WRITE_TO_FILE = True
         self.ALARM = True
         self.FILE_NAME = "vaccine.txt"
@@ -43,6 +43,7 @@ class SlotChecker:
             for date in self.DATES:
                 resp = requests.get(self.URL.format(district_id[0], date))
                 if resp.status_code != 200:
+                    print(resp.status_code)
                     # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
                     continue
                 free_slots = self.check_free_slots(resp.json())
