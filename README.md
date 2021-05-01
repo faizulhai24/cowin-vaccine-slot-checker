@@ -15,7 +15,7 @@ Explanation for all the configuration that can be found in [slot_checker.py](htt
 
 Config                                |           Info
 --------------------------------------| ----------------------------------
-DISTRICT_IDS                          | This is the list of districts to check for free slot. You can get your district id in [district_ids_list](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/district_id_list.py) E.g. [(294, "BBMP"), (265, "Bengaluru Urban")] will find slots in BBMP and Bengaluru Urban districts. Change this id and name to your district. 
+DISTRICT_IDS                          | This is the list of districts to check for free slot. You can get your district id in [DISTRICT_LISTS](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/DISTRICT_LISTS.md). Example. [(294, "BBMP"), (265, "Bengaluru Urban")] will find slots in BBMP and Bengaluru Urban districts. Change this id and name to your district. 
 WRITE_TO_FILE                         | Optional. Write the free slots to a file. Default: True
 FILE_NAME                             | Optional. File to which to write the open slots to. Default: "vaccine.txt"
 ALARM                                 | Optional. This will ring an alarm when free slots are found. Default: True
