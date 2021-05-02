@@ -1,8 +1,10 @@
 import datetime
+import os
+import platform
 import time
+from subprocess import call
 
 import requests
-from pygame import mixer
 
 
 class SlotChecker:
@@ -60,9 +62,10 @@ class SlotChecker:
             if self.WRITE_TO_FILE:
                 self.write_to_file(slots)
             if self.ALARM:
-                mixer.init()
-                mixer.music.load('./alarm.mp3')
-                mixer.music.play()
+                if platform.system() == 'Darwin':
+                    os.system("afplay " + 'alarm.wav')
+                elif platform.system() == 'Linux':
+                    call(["aplay", "alarm.wav"])
                 time.sleep(5)
 
 
