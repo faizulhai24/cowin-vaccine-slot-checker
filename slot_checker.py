@@ -14,6 +14,8 @@ class SlotChecker:
         self.WRITE_TO_FILE = True
         self.ALARM = True
         self.FILE_NAME = "vaccine.txt"
+        self.MIN_AGE = 18
+        self.MIN_CAPACITY = 0
 
         now = datetime.datetime.now()
         for i in range(5):
@@ -25,8 +27,10 @@ class SlotChecker:
         centers = data['centers']
         for center in centers:
             for session in center['sessions']:
-                if session['min_age_limit'] == 18 and session['available_capacity'] > 0:
-                    free_slots.append("{} - {} - {}".format(center['name'], center['district_name'], session['date']))
+                if session['min_age_limit'] == self.MIN_AGE and session['available_capacity'] > self.MIN_CAPACITY:
+                    free_slots.append(
+                        "{} - {} - {} - {} - {}".format(center['name'], center['district_name'], session['date'],
+                                                        center['fee_type'], session['vaccine']))
         return free_slots
 
     def write_to_file(self, slots):
