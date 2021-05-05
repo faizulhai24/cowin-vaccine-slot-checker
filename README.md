@@ -35,8 +35,8 @@ Cron job are periodic jobs that will run silently in the background automaticall
 There is a cron helper script [slot_script.sh](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/cron_script.sh) in the repo, however you might have to make some changes to cron_script according to your environment.
 
 1. Go to the terminal and run ```crontab -e```
-2. Add this line `````*/10 * * * *  <PATH_TO_THE_REPO>/cron_script.sh`````
-3. You can change the periodicity. Just a regular cron expression. The above one will execute every 10 minutes.
+2. Add this line `````* * * * *  <PATH_TO_THE_REPO>/cron_script.sh`````
+3. You can change the periodicity. Just a regular cron expression. The above one will execute every 1 minute.
 3. (Optional) If you want to disable the terminal mail for every cron job run add ```MAILTO="""``` above the previous command.
 
 >Note: There is ```MIN_CAPACITY``` config in the main file. Change it to maybe ```5```, so that your laptop does not keep alerting you when a single slot opens up because most likely it is going to filled by the time you sign in onto the portal.
