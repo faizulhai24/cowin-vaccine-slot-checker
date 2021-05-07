@@ -5,7 +5,6 @@ import time
 from subprocess import call
 
 import requests
-import winsound
 
 class SlotChecker:
     def __init__(self):
@@ -67,7 +66,8 @@ class SlotChecker:
                 elif platform.system() == 'Linux':
                     call(["aplay", "alarm.wav"])
                 elif platform.system() == 'Windows':
-                	duration = 5000  # milliseconds
+                    import winsound
+                    duration = 5000  # milliseconds
                     freq = 440  # Hz
                     winsound.Beep(freq, duration)
 
