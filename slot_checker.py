@@ -47,7 +47,10 @@ class SlotChecker:
         slots = []
         for district_id in self.DISTRICT_IDS:
             for date in self.DATES:
-                resp = requests.get(self.URL.format(district_id[0], date))
+                resp = requests.get(self.URL.format(district_id[0], date), headers={
+                    "accept": "application/json",
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36',
+                })
                 if resp.status_code != 200:
                     print(resp.status_code)
                     # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
