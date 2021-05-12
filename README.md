@@ -21,7 +21,7 @@ FILE_NAME                             | Optional. File to which to write the ope
 ALARM                                 | Optional. This will ring an alarm when free slots are found. Default: True
 NUM_WEEKS                             | No of weeks starting today to check the slots in. Default: 5
 MIN_AGE                               | Minimum age limit. Default: 18. Can be changed to 45 for senior people.   
-
+OPEN_PAGE                             | Optional. Open selfregistration page for quick booking. Default: True
 
 ## Steps to run:
 1. Clone the repository
