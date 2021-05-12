@@ -21,7 +21,7 @@ class SlotChecker:
         self.WRITE_TO_FILE = True
         self.ALARM = True
         self.FILE_NAME = "vaccine.txt"
-        self.MIN_AGE = 18
+        self.MIN_AGE = [18,45]
         self.MIN_CAPACITY = 0
         self.OPEN_PAGE = True
         self.COWIN_PORTAL ="https://selfregistration.cowin.gov.in/"
@@ -52,7 +52,9 @@ class SlotChecker:
 
     def run(self):
         slots = []
-        for district_id in self.DISTRICT_IDS:
+        for min_age in self.MIN_AGE:
+            print("Checking for Age: {}".format(min_age))
+            for district_id in self.DISTRICT_IDS:
                 for date in self.DATES:
                     resp = requests.get(self.URL.format(district_id[0], date), headers={
                         "accept": "application/json",
