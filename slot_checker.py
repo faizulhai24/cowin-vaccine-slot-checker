@@ -14,7 +14,7 @@ except ImportError:
 
 class SlotChecker:
     def __init__(self):
-        self.DISTRICT_IDS = [(294, "BBMP"), (265, "Bengaluru Urban")]
+        self.DISTRICT_IDS = [(395, "Mumbai"), (392, "Thane")]
         self.NUM_WEEKS = 5
         self.DATES = []
         self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}"
