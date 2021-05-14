@@ -67,9 +67,10 @@ class SlotChecker:
                     call(["aplay", "alarm.wav"])
                 elif platform.system() == 'Windows':
                     import winsound
-                    duration = 5000  # milliseconds
+                    duration = [200,500,200,500,200,500,200,500]  # milliseconds
                     freq = 440  # Hz
-                    winsound.Beep(freq, duration)
+                    for x in duration:      #more like alarm compared to a static beep
+                        winsound.Beep(freq, x)
 
                 time.sleep(5)
 
