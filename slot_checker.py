@@ -6,7 +6,6 @@ from subprocess import call
 
 import requests
 
-
 class SlotChecker:
     def __init__(self):
         self.DISTRICT_IDS = [(294, "BBMP"), (265, "Bengaluru Urban")]
@@ -69,6 +68,13 @@ class SlotChecker:
                     os.system("afplay " + 'alarm.wav')
                 elif platform.system() == 'Linux':
                     call(["aplay", "alarm.wav"])
+                elif platform.system() == 'Windows':
+                    import winsound
+                    duration = [200,500,200,500,200,500,200,500]  # milliseconds
+                    freq = 440  # Hz
+                    for x in duration:      #more like alarm compared to a static beep
+                        winsound.Beep(freq, x)
+
                 time.sleep(5)
 
 
