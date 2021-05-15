@@ -78,6 +78,8 @@ class SlotChecker:
                     os.system("afplay " + 'alarm.wav')
                 elif platform.system() == 'Linux':
                     subprocess.call(["aplay", "alarm.wav"])
+                #elif platform.system() == 'Windows':
+                #    os.startfile("alarm.wav")
                 elif platform.system() == 'Windows':
                     import winsound
                     duration = [200,500,200,500,200,500,200,500]  # milliseconds
