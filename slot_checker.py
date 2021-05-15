@@ -78,7 +78,7 @@ class SlotChecker:
                     os.system("afplay " + 'alarm.wav')
                 elif platform.system() == 'Linux':
                     subprocess.call(["aplay", "alarm.wav"])
-                #elif platform.system() == 'Windows':
+                #elif platform.system() == 'Windows':               #Choice between Beeping or playing the wav file
                 #    os.startfile("alarm.wav")
                 elif platform.system() == 'Windows':
                     import winsound
