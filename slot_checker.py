@@ -36,10 +36,11 @@ class SlotChecker:
         centers = data['centers']
         for center in centers:
             for session in center['sessions']:
-                if session['min_age_limit'] == self.MIN_AGE and session['available_capacity'] > self.MIN_CAPACITY:
-                    free_slots.append(
-                        "{} - {} - {} - {} - {}".format(center['name'], center['district_name'], session['date'],
-                                                        center['fee_type'], session['vaccine']))
+                for min_age in self.MIN_AGE:
+                    if session['min_age_limit'] == min_age and session['available_capacity'] > self.MIN_CAPACITY:
+                        free_slots.append(
+                            "{}\t{}\t{}\t{}\t{}\t{}\t{}".format(session['min_age_limit'],session['available_capacity'], center['district_name'], session['date'],
+                                                            center['fee_type'], session['vaccine'], center['name']).expandtabs(20))
         return free_slots
 
     def write_to_file(self, slots):
@@ -62,17 +63,21 @@ class SlotChecker:
                     })
                     if resp.status_code != 200:
                         print(resp.status_code)
-                        # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
                         continue
                     free_slots = self.check_free_slots(resp.json())
                     if free_slots:
                         slots.extend(free_slots)
                     else:
                         print("No free slots found on {} for {}".format(date, district_id[1]))
+                        # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
 
         if slots:
             if self.WRITE_TO_FILE:
+                slot_head=["{}\t{}\t{}\t{}\t{}\t{}\t{}".format("min_age_limit","available_capacity","district_name","date",
+                                                        "fee_type","vaccine","name").expandtabs(20)]
+                self.write_to_file(slot_head)
                 self.write_to_file(slots)
+
             if self.ALARM:
                 if platform.system() == 'Darwin':
                     os.system("afplay " + 'alarm.wav')
@@ -100,6 +105,7 @@ class SlotChecker:
                     except OSError:
                         import webbrowser
                         webbrowser.open(self.COWIN_PORTAL)
+
 
 
 if __name__ == '__main__':
