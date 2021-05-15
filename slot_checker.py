@@ -36,18 +36,26 @@ class SlotChecker:
         centers = data['centers']
         for center in centers:
             for session in center['sessions']:
-                if session['min_age_limit'] == self.MIN_AGE and session['available_capacity'] > self.MIN_CAPACITY:
-                    free_slots.append(
-                        "{} - {} - {} - {} - {}".format(center['name'], center['district_name'], session['date'],
-                                                        center['fee_type'], session['vaccine']))
+                for min_age in self.MIN_AGE:
+                    if session['min_age_limit'] == min_age and session['available_capacity'] > self.MIN_CAPACITY:
+                        print(
+                            "{}-{}-{}-{}-{}-{}-{}".format(session['min_age_limit'],session['available_capacity'], center['district_name'], session['date'],
+                                                            center['fee_type'], session['vaccine'], center['name']).expandtabs(20))
+                        free_slots.append(
+                            "{}\t{}\t{}\t{}\t{}\t{}\t{}".format(session['min_age_limit'],session['available_capacity'], center['district_name'], session['date'],
+                                                            center['fee_type'], session['vaccine'], center['name']).expandtabs(20))
         return free_slots
 
     def write_to_file(self, slots):
-        print(slots)
+        slot_head=["{}\t{}\t{}\t{}\t{}\t{}\t{}".format("Age","Available Slots","District","Date",
+                                                        "Fees Type","Vaccine","Centre Name").expandtabs(20)]
         f = open(self.FILE_NAME, "a")
+        f.write('{}\n'.format(datetime.datetime.now()))
+        f.write('\n'.join(slot_head))
+        f.write('\n')
         data = '\n'.join(slots)
         f.write(data)
-        f.write('\n')
+        f.write('\n\n')
         f.close()
 
     def run(self):
@@ -62,17 +70,18 @@ class SlotChecker:
                     })
                     if resp.status_code != 200:
                         print(resp.status_code)
-                        # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
                         continue
                     free_slots = self.check_free_slots(resp.json())
                     if free_slots:
                         slots.extend(free_slots)
                     else:
                         print("No free slots found on {} for {}".format(date, district_id[1]))
+                        # print("Failed to fetch slots on {} for {}".format(date, district_id[1]))
 
         if slots:
             if self.WRITE_TO_FILE:
                 self.write_to_file(slots)
+
             if self.ALARM:
                 if platform.system() == 'Darwin':
                     os.system("afplay " + 'alarm.wav')
@@ -86,10 +95,10 @@ class SlotChecker:
                     freq = 440  # Hz
                     for x in duration:      #more like alarm compared to a static beep
                         winsound.Beep(freq, x)
-                time.sleep(5)
 
             if self.OPEN_PAGE:
-                print(self.COWIN_PORTAL)
+                print("\n\n\nOpening {}".format(self.COWIN_PORTAL))
+                time.sleep(5)
                 if platform.system()=='Windows':
                     os.startfile(self.COWIN_PORTAL)
                 elif platform.system()=='darwin':
