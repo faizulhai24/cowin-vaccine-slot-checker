@@ -23,7 +23,7 @@ class SlotChecker:
         self.FILE_NAME = "vaccine.txt"
         self.MIN_AGE = [18,45]
         self.MIN_CAPACITY = 0
-        self.OPEN_PAGE = False
+        self.OPEN_PAGE = True
         self.COWIN_PORTAL ="https://selfregistration.cowin.gov.in/"
 
         now = datetime.datetime.now()
