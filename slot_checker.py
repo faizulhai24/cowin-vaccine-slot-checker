@@ -91,10 +91,11 @@ class SlotChecker:
                     freq = 440  # Hz
                     for x in duration:      #more like alarm compared to a static beep
                         winsound.Beep(freq, x)
-                time.sleep(5)
+
 
             if self.OPEN_PAGE:
-                print(self.COWIN_PORTAL)
+                print("\n\n\nOpening {}".format(self.COWIN_PORTAL))
+                time.sleep(5)
                 if platform.system()=='Windows':
                     os.startfile(self.COWIN_PORTAL)
                 elif platform.system()=='darwin':
