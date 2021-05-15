@@ -20,8 +20,8 @@ WRITE_TO_FILE                         | Optional. Write the free slots to a file
 FILE_NAME                             | Optional. File to which to write the open slots to. Default: "vaccine.txt"
 ALARM                                 | Optional. This will ring an alarm when free slots are found. Default: True
 NUM_WEEKS                             | No of weeks starting today to check the slots in. Default: 5
-MIN_AGE                               | Minimum age limit. Default: 18. Can be changed to 45 for senior people.   
-
+MIN_AGE                               | Minimum age limit. Array can used to check for 18-44 or 45+ age groups. Default : Both
+OPEN_PAGE                             | Optional. This will open the self registration page when free slots are found. Default: True
 
 ## Steps to run:
 1. Clone the repository
