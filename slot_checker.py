@@ -80,14 +80,15 @@ class SlotChecker:
                                                         "fee_type","vaccine","name").expandtabs(20)]
                 self.write_to_file(slot_head)
                 self.write_to_file(slots)
+                os.startfile(self.FILE_NAME)
 
             if self.ALARM:
                 if platform.system() == 'Darwin':
                     os.system("afplay " + 'alarm.wav')
                 elif platform.system() == 'Linux':
                     subprocess.call(["aplay", "alarm.wav"])
-                #elif platform.system() == 'Windows':               #Choice between Beeping or playing the wav file
-                #    os.startfile("alarm.wav")
+                # elif platform.system() == 'Windows':               #Choice between Beeping or playing the wav file
+                #     os.startfile("alarm.wav")
                 elif platform.system() == 'Windows':
                     import winsound
                     duration = [200,500,200,500,200,500,200,500]  # milliseconds
