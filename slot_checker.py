@@ -81,7 +81,8 @@ class SlotChecker:
         if slots:
             if self.WRITE_TO_FILE:
                 self.write_to_file(slots)
-
+                os.startfile(self.FILE_NAME)
+                
             if self.ALARM:
                 if platform.system() == 'Darwin':
                     os.system("afplay " + 'alarm.wav')
