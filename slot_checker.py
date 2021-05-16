@@ -81,9 +81,6 @@ class SlotChecker:
 
         if slots:
             if self.WRITE_TO_FILE:
-                slot_head=["{}\t{}\t{}\t{}\t{}\t{}\t{}".format("min_age_limit","available_capacity","district_name","date",
-                                                        "fee_type","vaccine","name").expandtabs(20)]
-                self.write_to_file(slot_head)
                 self.write_to_file(slots)
                 if self.FILE_OPEN:
                     os.startfile(self.FILE_NAME)
