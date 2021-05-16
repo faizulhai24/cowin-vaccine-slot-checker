@@ -16,14 +16,14 @@ class SlotChecker:
     def __init__(self):
         self.DISTRICT_IDS = [(395, "Mumbai"), (392, "Thane")]
         self.NUM_WEEKS = 5
+        self.MIN_AGE = [18,45]
+        self.MIN_CAPACITY = 5
         self.DATES = []
         self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}"
         self.ALARM = True
         self.WRITE_TO_FILE = True
         self.FILE_NAME = "vaccine.txt"
         self.FILE_OPEN = True        
-        self.MIN_AGE = [18,45]
-        self.MIN_CAPACITY = 5
         self.OPEN_PAGE = True
         self.COWIN_PORTAL ="https://selfregistration.cowin.gov.in/"
 
