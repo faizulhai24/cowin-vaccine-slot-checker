@@ -18,11 +18,12 @@ class SlotChecker:
         self.NUM_WEEKS = 5
         self.DATES = []
         self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}"
-        self.WRITE_TO_FILE = True
         self.ALARM = True
+        self.WRITE_TO_FILE = True
         self.FILE_NAME = "vaccine.txt"
+        self.FILE_OPEN = True        
         self.MIN_AGE = [18,45]
-        self.MIN_CAPACITY = 0
+        self.MIN_CAPACITY = 5
         self.OPEN_PAGE = True
         self.COWIN_PORTAL ="https://selfregistration.cowin.gov.in/"
 
@@ -84,8 +85,9 @@ class SlotChecker:
                                                         "fee_type","vaccine","name").expandtabs(20)]
                 self.write_to_file(slot_head)
                 self.write_to_file(slots)
-                os.startfile(self.FILE_NAME)
-                
+                if self.FILE_OPEN:
+                    os.startfile(self.FILE_NAME)
+
             if self.ALARM:
                 if platform.system() == 'Darwin':
                     os.system("afplay " + 'alarm.wav')

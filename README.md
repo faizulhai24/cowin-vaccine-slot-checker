@@ -21,10 +21,12 @@ Config                                |           Info
 DISTRICT_IDS                          | This is the list of districts to check for free slot. You can get your district id in [DISTRICT_LISTS](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/DISTRICT_LISTS.md). Example. [(294, "BBMP"), (265, "Bengaluru Urban")] will find slots in BBMP and Bengaluru Urban districts. Change this id and name to your district. 
 WRITE_TO_FILE                         | Optional. Write the free slots to a file. Default: True
 FILE_NAME                             | Optional. File to which to write the open slots to. Default: "vaccine.txt"
+FILE_OPEN                             | Optional. Wheater to open the file, if WRITE_TO_FILE is enabled.
 ALARM                                 | Optional. This will ring an alarm when free slots are found. Default: True
 NUM_WEEKS                             | No of weeks starting today to check the slots in. Default: 5
 MIN_AGE                               | Minimum age limit. Array can used to check for 18-44 or 45+ age groups. Default : Both
 OPEN_PAGE                             | Optional. This will open the self registration page when free slots are found. Default: True
+
 
 ## Steps to run:
 1. Clone the repository
