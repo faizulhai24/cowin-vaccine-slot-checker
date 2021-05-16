@@ -24,7 +24,7 @@ FILE_NAME                             | Optional. File to which to write the ope
 FILE_OPEN                             | Optional. Wheater to open the file, if WRITE_TO_FILE is enabled.
 ALARM                                 | Optional. This will ring an alarm when free slots are found. Default: True
 NUM_WEEKS                             | No of weeks starting today to check the slots in. Default: 5
-MIN_AGE                               | Minimum age limit. Array can used to check for 18-44 or 45+ age groups. Default : Both
+MIN_AGE                               | Array can used to check for 18-44 or 45+ age groups. Default : Both
 OPEN_PAGE                             | Optional. This will open the self registration page when free slots are found. Default: True
 
 
