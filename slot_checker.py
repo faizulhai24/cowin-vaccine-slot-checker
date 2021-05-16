@@ -38,13 +38,16 @@ class SlotChecker:
             for session in center['sessions']:
                 for min_age in self.MIN_AGE:
                     if session['min_age_limit'] == min_age and session['available_capacity'] > self.MIN_CAPACITY:
+                        print(
+                            "{}-{}-{}-{}-{}-{}-{}".format(session['min_age_limit'],session['available_capacity'], center['district_name'], session['date'],
+                                                            center['fee_type'], session['vaccine'], center['name']).expandtabs(20))
                         free_slots.append(
                             "{}\t{}\t{}\t{}\t{}\t{}\t{}".format(session['min_age_limit'],session['available_capacity'], center['district_name'], session['date'],
                                                             center['fee_type'], session['vaccine'], center['name']).expandtabs(20))
         return free_slots
 
     def write_to_file(self, slots):
-        print(slots)
+        # print(slots)
         f = open(self.FILE_NAME, "a")
         data = '\n'.join(slots)
         f.write(data)
