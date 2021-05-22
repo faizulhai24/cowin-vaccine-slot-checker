@@ -16,13 +16,14 @@ class SlotChecker:
     def __init__(self):
         self.DISTRICT_IDS = [(395, "Mumbai"), (392, "Thane")]
         self.NUM_WEEKS = 5
+        self.MIN_AGE = [18,45]
+        self.MIN_CAPACITY = 5
         self.DATES = []
         self.URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={}&date={}"
-        self.WRITE_TO_FILE = True
         self.ALARM = True
+        self.WRITE_TO_FILE = True
         self.FILE_NAME = "vaccine.txt"
-        self.MIN_AGE = [18,45]
-        self.MIN_CAPACITY = 0
+        self.FILE_OPEN = True        
         self.OPEN_PAGE = True
         self.COWIN_PORTAL ="https://selfregistration.cowin.gov.in/"
 
@@ -47,11 +48,15 @@ class SlotChecker:
         return free_slots
 
     def write_to_file(self, slots):
-        # print(slots)
+        slot_head=["{}\t{}\t{}\t{}\t{}\t{}\t{}".format("Age","Available Slots","District","Date",
+                                                        "Fees Type","Vaccine","Centre Name").expandtabs(20)]
         f = open(self.FILE_NAME, "a")
+        f.write('{}\n'.format(datetime.datetime.now()))
+        f.write('\n'.join(slot_head))
+        f.write('\n')
         data = '\n'.join(slots)
         f.write(data)
-        f.write('\n')
+        f.write('\n\n')
         f.close()
 
     def run(self):
@@ -76,25 +81,23 @@ class SlotChecker:
 
         if slots:
             if self.WRITE_TO_FILE:
-                slot_head=["{}\t{}\t{}\t{}\t{}\t{}\t{}".format("min_age_limit","available_capacity","district_name","date",
-                                                        "fee_type","vaccine","name").expandtabs(20)]
-                self.write_to_file(slot_head)
                 self.write_to_file(slots)
+                if self.FILE_OPEN:
+                    os.startfile(self.FILE_NAME)
 
             if self.ALARM:
                 if platform.system() == 'Darwin':
                     os.system("afplay " + 'alarm.wav')
                 elif platform.system() == 'Linux':
                     subprocess.call(["aplay", "alarm.wav"])
-                #elif platform.system() == 'Windows':               #Choice between Beeping or playing the wav file
-                #    os.startfile("alarm.wav")
+                # elif platform.system() == 'Windows':               #Choice between Beeping or playing the wav file
+                #     os.startfile("alarm.wav")
                 elif platform.system() == 'Windows':
                     import winsound
                     duration = [200,500,200,500,200,500,200,500]  # milliseconds
                     freq = 440  # Hz
                     for x in duration:      #more like alarm compared to a static beep
                         winsound.Beep(freq, x)
-
 
             if self.OPEN_PAGE:
                 print("\n\n\nOpening {}".format(self.COWIN_PORTAL))
