@@ -9,7 +9,7 @@ This is a Python script which will help you to know when a slot is available on 
 3. (Optional) Run the script as a cron job (Linux/MacOS), you can get an alert whenever a slot frees up.
 4. (Optional) Run cron_windows.bat (Windows), to periodically check for slots.
 5. (Optional) Open the self registration page when free slots are found for faster registration.
-6. (Optional) Can be configured to check for bot 18+ and 45+ age groups. (Default Behaviour)
+6. (Optional) Can be configured to check for either/both(Default Behaviour) 18+ and 45+ age groups.
 
 The main code is in the file [slot_checker.py](https://github.com/faizulhai24/cowin-vaccine-slot-checker/blob/main/slot_checker.py). Rest everything is optional in case you want to run it as a cron job.
 
